@@ -11,7 +11,8 @@ vagrant up
 ## Config
 Inside the VM configure Firefox to use Burp as a proxy:
 
-1. Visit http://127.0.0.1:8080
+1. Start Burp Suite.
+2. Visit http://127.0.0.1:8080.
 2. Download the CA cert.
 3. Open Firefox and change the following:
    1. `Settings > Proxy > Manual Proxy Configuration`: "127.0.0.1:8080" for both HTTP and HTTPS
