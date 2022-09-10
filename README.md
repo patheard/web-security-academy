@@ -3,8 +3,8 @@ Experiements with [Burp Suite](https://portswigger.net/burp) and [Kali](https://
 
 ## Setup
 ```sh
-brew install --cask virtualbox
-brew install --cask vagrant
+# Install brew https://brew.sh/
+brew bundle
 vagrant up
 ```
 
