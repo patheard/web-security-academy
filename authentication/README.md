@@ -1,5 +1,5 @@
 # Authentication :unlock:
-Vulnerabilities around logging into an application (proving your identity to that app).  Generally fall into two types:
+Vulnerabilities around logging into an application (proving your identity to that app).  Generally fall into two categories:
 
 1. Login susceptible to brute force attacks.
 1. Authentication can by bypassed entirely (broken authentication).
@@ -14,7 +14,6 @@ Vulnerabilities around logging into an application (proving your identity to tha
 1. `Prevent user enumeration`: do not use sequential user IDs, ensure error messages and request processing times are generic, and do not allow account enumeration via API endpoints.
 
 ## Password based vulnerabilities :key:
-
 ### Brute forcing
 
 Use a tool like [Hydra](https://github.com/vanhauser-thc/thc-hydra) or [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder/using) to brute force a login form.  The tool will try a list of common usernames and passwords against the login form submission.
@@ -49,12 +48,36 @@ hydra \
     -P passwords.list \
     web-security-academy.net \
     https-post-form "/login:username=^USER^&password=^PASS^:Invalid username"
+
+# Known user and password list, checking for a 302 HTTP response code (success condition)
+hydra \
+    -l the_big_cheese \
+    -P passwords.list \
+    web-security-academy.net \
+    https-post-form "/login:username=^USER^&password=^PASS^:S=302"
 ```
 
 #### Considerations
 - `Account locking`: can lead to user enumeration by indicating the account exists.  When an account is locked, the error message should remain generic.
 - `Credential stuffing`: relies on people using the same password across multiple sites.  Uses a dictionary of `username:password` combinations and only tries each `username` once, thereby bypassing account locking.  This must be caught with rate limiting or throttling.
 - `IP based rate limiting flaws`: if a successful login resets the rate limit counter, an attacker can bypass the rate limit by logging in with a valid account every `n` attempts.  Rate limiting should be unconditional for a set period based on the IP address.  This can be bypassed by using multiple IP addresses to conduct the attack.
+
+## Multi-factor vulnerabilities :iphone:
+
+Vulnerabilities can include: 
+
+- Checking the same factor twice (e.g. email based code) since this is only confirming the user knows their email login (both factors are "something you know").
+- Using a weak factor (e.g. SMS based code) since this can be intercepted or fall victim to SIM card swapping.
+- Second factor entry could be brute forced since it is usually a short number.
+- Once login has succeeded and the second factor is requested, if there are flaws in the application logic, it may be possible to:
+   - Bypass the second factor entirely by jumping directly to a page in the application.
+   - User jump by altering the session cookie to login as a different user.
+
+## Other vulnerabilities :hammer:
+
+- `Insecure password reset`:  allow an attacker to reset any user's password by guessing the reset link or altering the request to reset a different user's password.
+- `Resetting passwords by mail`: sending a temporary password to a user's email address.  Email is considered insecure and there is a risk of that email being intercepted.  Only provide high-entropy password reset links by email.
+- `Keeping users logged in`: relies on using a cookie.  If the cookie is insecure, an attacker can guess how to recreate it or alter a cookie for their own account to login as another user.  This can be mitigated by second factor verification.
 
 ## Tools
 * [Hydra](https://github.com/vanhauser-thc/thc-hydra)
