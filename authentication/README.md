@@ -112,8 +112,6 @@ echo -n "bar" | openssl dgst -sha256
 
 Once you know the hashing, you can begin brute forcing the hashed value using [Burp Intruder (view solution)](https://portswigger.net/web-security/authentication/other-mechanisms/lab-brute-forcing-a-stay-logged-in-cookie).
 
-```sh
-
 ## Tools
 * [Hydra](https://github.com/vanhauser-thc/thc-hydra)
 * [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder/using)
