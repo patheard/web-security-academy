@@ -11,7 +11,7 @@ The attack can come in various forms:
 Simple to prevent in an app by using parameterized queries and never allowing dynamic query construction.
 ```python
 with db_connection.cursor(prepared=True) as cursor:
-    stmt = "INSERT INTO notes (note, owner_id) VALUES (%s,%s)"
+    stmt = "INSERT INTO notes (note, owner_id) VALUES (%s, %s)"
     cursor.execute(stmt, (note, owner_id))
 ```
 
@@ -29,6 +29,7 @@ username = "admin' OR 1=1--"
 ```
 
 ### Information disclosure
+```python
 # Insecure query
 query = f"SELECT product_name FROM products WHERE product_id = {product_id}"
 
@@ -55,7 +56,7 @@ If requests are being blocked, try encoding the attack using a tool like Hackver
 ## Tools
 * [Burp Proxy](https://portswigger.net/burp/documentation/desktop/tools/proxy)
 * [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater)
-* [BApp Store > Hackvertor](https://portswigger.net/bappstore/65033cbd2c344fbabe57ac060b5dd100): encode/decode payloads
+* [BApp Store > Hackvertor](https://portswigger.net/bappstore/65033cbd2c344fbabe57ac060b5dd100)
 
 ## References
 * https://portswigger.net/web-security/sql-injection
