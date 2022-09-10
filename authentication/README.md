@@ -1,10 +1,10 @@
-# Authentication
+# Authentication :unlock:
 Vulnerabilities around an user or service proving its identity to an application.  Generally fall into two types:
 
 1. Login susceptible to brute force attacks.
 1. Authentication can by bypassed entirely (broken authentication).
 
-## Prevent.
+## Prevent
 1. Safeguard credentials: strong encryption and password hashing.  Never pass or store credentials in plain text.
 1. Use multi-factor authentication: something you know (password), something you have (phone/token), and something you are (biometrics).
 1. Use rate limiting, account locking and CAPTCHA: prevent brute force attacks.

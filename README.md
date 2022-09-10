@@ -1,4 +1,4 @@
-# Web Security Academy
+# Web Security Academy :school:
 Working through PortSwigger's [Web Security Academy](https://portswigger.net/web-security) and experiementing with [Burp Suite](https://portswigger.net/burp) and [Kali](https://www.kali.org/).
 
 ## Setup
@@ -15,4 +15,5 @@ Configure Chromium to trust the Burp CA certificate:
 4. Click `Import`, select `cacert.der`, and trust for web identies.
 
 ## Contents
+- [Authentication](authentication/README.md)
 - [SQL injection](sql-injection/README.md)

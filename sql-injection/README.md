@@ -1,4 +1,4 @@
-# SQL injection
+# SQL injection :syringe:
 Allows an attacker to interfere with, and alter, SQL queries being performed by the app.  Relies on string concatenation from unsanitized user input directly into the SQL query.
 
 The attack can come in various forms:
