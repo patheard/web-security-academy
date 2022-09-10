@@ -1,5 +1,5 @@
-# Burp
-Experiements with [Burp Suite](https://portswigger.net/burp) and [Kali](https://www.kali.org/).
+# Web Security Academy
+Working through PortSwigger's [Web Security Academy](https://portswigger.net/web-security) and experiementing with [Burp Suite](https://portswigger.net/burp) and [Kali](https://www.kali.org/).
 
 ## Setup
 ```sh
