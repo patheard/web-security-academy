@@ -88,13 +88,15 @@ A `remember me` cookie will include a value that can be used to authenticate the
 Set-Cookie: stay-logged-in=d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw;
 ```
 
-Burp Proxy will automatically recognize the value as a base64 encoded string and decode it for you:
+Burp Proxy will automatically recognize the value as a base64 encoded string or you can decode it yourself:
 
 ```sh
-`weiner:51dc30ddc473d43a6011e9ebba6ca770`
+# Decode the cookie value
+echo "d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw" | base64 -d
+weiner:51dc30ddc473d43a6011e9ebba6ca770
 ```
 
-You can then use the following tools to determine the hash type and check the result for a known value
+You can then use the following tools to determine the hash type and check the result for a known value:
 
 ```sh
 # Identify hash type
@@ -108,7 +110,9 @@ echo -n "foo" | openssl dgst -md5
 echo -n "bar" | openssl dgst -sha256
 ```
 
-Once you know the hashing, you can begin brute forcing the hashed value.
+Once you know the hashing, you can begin brute forcing the hashed value using [Burp Intruder (view solution)](https://portswigger.net/web-security/authentication/other-mechanisms/lab-brute-forcing-a-stay-logged-in-cookie).
+
+```sh
 
 ## Tools
 * [Hydra](https://github.com/vanhauser-thc/thc-hydra)
