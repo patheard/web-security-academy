@@ -16,4 +16,5 @@ Configure Chromium to trust the Burp CA certificate:
 
 ## Contents
 - [Authentication](authentication/README.md)
+- [Directory traversal](directory-traversal/README.md)
 - [SQL injection](sql-injection/README.md)
