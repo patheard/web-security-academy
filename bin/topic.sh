@@ -1,12 +1,13 @@
 #!/bin/bash
 
-read -p "Topic name: " TOPIC
+read -rp "Topic name: " TOPIC
+DIR=$(echo "${TOPIC//[^A-Za-z]/-}" | tr '[:upper:]' '[:lower:]')
 
 echo "🚧 Creating $TOPIC"
-mkdir -p "$TOPIC"
+mkdir -p "$DIR"
 
-echo 📝 "Creating $TOPIC/README.md"
-cat << EOF > "$TOPIC/README.md"
+echo 📝 "Creating $DIR/README.md"
+cat << EOF > "$DIR/README.md"
 # $TOPIC
 
 ## Prevent
@@ -16,5 +17,5 @@ cat << EOF > "$TOPIC/README.md"
 ## References
 EOF
 
-echo 📝 "Adding $TOPIC/README.md link to main README.md"
-echo -e "\n- [$TOPIC]($TOPIC/README.md)" >> README.md
+echo 📝 "Adding $DIR/README.md link to main README.md"
+echo -e "\n- [$TOPIC]($DIR/README.md)" >> README.md
