@@ -1,4 +1,4 @@
 .PHONY: topic
 
 topic:
-	@./bin/new.sh
+	@./bin/topic.sh
