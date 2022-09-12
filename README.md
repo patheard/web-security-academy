@@ -20,6 +20,7 @@ Optionally, configure Chromium to trust the Burp CA certificate:
 ## Topics
 
 - [Authentication](authentication/README.md)
+- [Business logic vulnerabilities](business-logic-vulnerabilities/README.md)
 - [Command injection](command-injection/README.md)
 - [Directory traversal](directory-traversal/README.md)
 - [SQL injection](sql-injection/README.md)
