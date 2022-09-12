@@ -33,7 +33,7 @@ The following can all be uesd to inject commands:
 ;
 Newline (0x0a or \n)
 
-# Unix hosts
+# Bash specific
 `
 $(
 ```
