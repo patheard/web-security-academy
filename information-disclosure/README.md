@@ -23,9 +23,9 @@ This can then allow the attacker to cause harm to the users, business or service
 
 Information disclosure can be triggered and detected by:
 
-- Fuzzing: sending a large number of requests with varying inputs to see how the application behaves.
-- Scanning: using a tool like [Burp Scanner](https://portswigger.net/burp/vulnerability-scanner) to test for and identify information leakage during browsing.
-- Causing errors: attempting to cause error conditions in the application to see what information is revealed in the error messages.
+- `Fuzzing`: sending a large number of requests with varying inputs to see how the application behaves.
+- `Scanning`: using a tool like [Burp Scanner](https://portswigger.net/burp/vulnerability-scanner) to test for and identify information leakage during browsing.
+- `Causing errors`: attempting to cause error conditions in the application to see what information is revealed in the error messages.
 
 ## Sources of information disclosure
 
