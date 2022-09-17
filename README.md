@@ -4,6 +4,8 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 
 ## Topics
 
+### Server-side
+- [Access control](access-control/README.md)
 - [Authentication](authentication/README.md)
 - [Business logic vulnerabilities](business-logic-vulnerabilities/README.md)
 - [Command injection](command-injection/README.md)
