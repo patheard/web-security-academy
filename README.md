@@ -14,7 +14,7 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [Information disclosure](information-disclosure/README.md)
 - [Server-side request forgery (SSRF)](server-side-request-forgery/README.md)
 - [SQL injection](sql-injection/README.md)
-- [XML external entity injection](xml-external-entity-injection/README.md)
+- [XML external entity (XXE) injection](xml-external-entity-injection/README.md)
 
 ## Setup
 ```sh
