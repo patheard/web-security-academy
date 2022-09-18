@@ -74,8 +74,10 @@ When ap application relies on geolocation IP lookup to enforce access control.  
 - Rigorously test access control for all resources and actions, ideally using automation.
 
 ## Tools
+
 - [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder/using)
 - [Burp Proxy](https://portswigger.net/burp/documentation/desktop/tools/proxy/using)
+- [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater/using)
 
 ## References
 

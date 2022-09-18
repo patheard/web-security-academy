@@ -12,6 +12,7 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [Directory traversal](directory-traversal/README.md)
 - [Information disclosure](information-disclosure/README.md)
 - [SQL injection](sql-injection/README.md)
+- [File upload vulnerabilities](file-upload-vulnerabilities/README.md)
 
 ## Setup
 ```sh
