@@ -12,6 +12,7 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [Directory traversal](directory-traversal/README.md)
 - [File upload vulnerabilities](file-upload-vulnerabilities/README.md)
 - [Information disclosure](information-disclosure/README.md)
+- [Server-side request forgery (SSRF)](server-side-request-forgery/README.md)
 - [SQL injection](sql-injection/README.md)
 
 ## Setup
@@ -28,3 +29,5 @@ Optionally, configure Chromium to trust the Burp CA certificate:
 2. Go to `http://burpsuite` and download the `cacert.der` certificate.
 3. Go to `chrome://settings/certificates` and select `Authorities`.
 4. Click `Import`, select `cacert.der`, and trust for web identies.
+
+
