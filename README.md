@@ -10,9 +10,9 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [Business logic vulnerabilities](business-logic-vulnerabilities/README.md)
 - [Command injection](command-injection/README.md)
 - [Directory traversal](directory-traversal/README.md)
+- [File upload vulnerabilities](file-upload-vulnerabilities/README.md)
 - [Information disclosure](information-disclosure/README.md)
 - [SQL injection](sql-injection/README.md)
-- [File upload vulnerabilities](file-upload-vulnerabilities/README.md)
 
 ## Setup
 ```sh
