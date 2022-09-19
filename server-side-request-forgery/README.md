@@ -47,10 +47,64 @@ Content-Length: 118
 stockApi=http://192.168.0.68/admin
 ```
 
+### Circumvent SSRF protection
+
+#### Deny-list input filters
+
+If an application does not allow strings like `localhost` or `127.0.0.1` to be processed, use alternate representations:
+
+1. `2130706433`, `017700000001`, or `127.1`.
+1. Register a domain that resolves to `127.0.0.1`.
+1. Use URL encoding or case variation to bypass string matching.
+
+#### Allow-list input filters
+
+If an application only allows requests to safelisted domains, they can sometimes be bypassed based on how URLs are parsed:
+
+```sh
+https://evil-host.com#good-host.com # URL fragment
+https://good-host.com.evil-host.com # Subdomain parsing
+https://good-host.com@evil-host.com # Userinfo parsing
+
+```
+
+The above can be combined with URL encoding to help bypass filters.
+
+#### Bypass via open redirects
+
+If application contains an open redirect vulnerability, you can use it to bypass allow list filters:
+
+```http
+POST /product/stock HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 118
+
+stockApi=https://feedingfromthegardenuntilhistickerisjammed.com/product?id=42&path=http://192.168.0.68/admin
+```
+
+### Blind SSRF
+
+When an attack succeeds and sends a request to a backend server, but does not send a response back to the attacker.
+
+Detect using an out-of-band technique (OAST) where you send a request a server you control and monitoring for the SSRF request.
+
+:bulb: It is common when testing for SSRF vulnerabilities to use a DNS lookup as the out-of-band technique.  This is because DNS lookups are usually permitted from most networks.  You can then check if only the DNS lookup succeeds and there is no subsequent HTTP request.  This indicates there is network filtering blocking your SSRF attack.
+
+To exploit blind SSRF vulnerabilities:
+
+- Send requests to the internal IP address space with known vulnerability payloads.  You may get lucky and stumble upon an unpatched vulnerability.  
+- It is also possible to have the HTTP request from an SSRF vulnerability return a malicious response in an attempt to gain control over the system.
 
 ## Prevent
 
+- Deny all outbound requests by default and safelist only what is required.
+- Safelist DNS lookups from your network to prevent OAST.
+- Safelist incoming requests to ensure they are to legitimate source.  As much as possible, use constants for the IP or URL so that it cannot be altered by an attacker. 
+
 ## Tools
+
+- [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder/using)
+- [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater/using)
 
 ## References
 
