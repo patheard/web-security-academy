@@ -16,6 +16,10 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [SQL injection](sql-injection/README.md)
 - [XML external entity (XXE) injection](xml-external-entity-injection/README.md)
 
+## License
+
+The content of this repo are study notes based on PortSwigger's [Web Security Academy](https://portswigger.net/web-security).  They hold all rights to any content that is not my own.
+
 ## Setup
 ```sh
 # Install Homebrew, VirtualBox, Vagrant and create a Kali VM
