@@ -208,13 +208,15 @@ If external entity resolution is disabled, you may be able to redefine a custom 
 - `File retrieval`: test for well known OS file retrieval such as `/etc/passwd` or `/etc/hosts`.
 - `Blind XXE to trigger SSRF`: send requests to systems you control and watch for requests in the logs.
 
-
 ## Prevent
 
 - Disable as many XML processing features as possible.
 - Usually disabling external entity resolution and `XInclude` is enough.
 
 ## Tools
+
+- [Burp Proxy](https://portswigger.net/burp/documentation/desktop/tools/proxy/using)
+- [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater/using)
 
 ## References
 
