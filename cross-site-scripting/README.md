@@ -9,10 +9,8 @@ To test for XSS, inject the JavaScript `alert()` or `print()` function to see if
 ## Reflected XSS
 
 Malicious script comes from the current HTTP request:
-```http
-GET https://insecure-website.com/status?message=<script>print()</script>
-
-# Results
+```html
+<!-- link: https://insecure-website.com/status?message=<script>print()</script> -->
 <p>Status: <script>print()</script></p>
 ```
 
