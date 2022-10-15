@@ -58,6 +58,60 @@ postId=3&comment=%3Cscript%3E%2F*%2BBad%2Bstuff%2Bhere...%2B*%2F%3C%2Fscript%3E&
    - Attacker does not need to find an external method to have the user visit a malicious URL.  They wait for the user to visit the vulnerable site.
    - User will likely be logged in when the malicious script executes.
 
+## DOM-based XSS
+
+Similar to reflected XSS, but the malicious script is injected into the DOM and executed in a sink that runs JavaScript.
+
+Common sinks include:
+
+```javascript
+eval()
+document.write()
+document.writeln()
+document.domain
+element.innerHTML
+element.outerHTML
+element.insertAdjacentHTML
+element.onevent
+```
+
+jQuery sinks:
+
+```javascript
+add()
+after()
+append()
+animate()
+insertAfter()
+insertBefore()
+before()
+html()
+prepend()
+replaceAll()
+replaceWith()
+wrap()
+wrapInner()
+wrapAll()
+has()
+constructor()
+init()
+index()
+jQuery.parseHTML()
+$.parseHTML()
+```
+
+Examples of injections:
+
+```javascript
+document.write('... <script>alert(document.cookies)</script> ...');
+element.innerHTML='... <img src=1 onerror=alert(document.domain)> ...'
+```
+
+### Impact
+
+- Same as reflected XSS
+- Can also be triggered as stored XSS depending on how the stored attack is injected into the DOM.
+
 ## Exploit
 
 ### Stealing cookies
@@ -129,6 +183,7 @@ function handleResponse() {
 - Encode data when output to prevent it being interpreted as HTML.
 - Use reponse headers to prevent XSS with `Content-Type` and `X-Content-Type-Options` if the response is not HTML.
 - Use a Content Security Policy (CSP) to prevent the execution of malicious scripts.
+- Do not output untrusted input into JavaScript sinks.
 
 ## Tools
 
