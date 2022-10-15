@@ -19,6 +19,11 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 - [SQL injection](sql-injection/README.md)
 - [XML external entity (XXE) injection](xml-external-entity-injection/README.md)
 
+## Testing
+
+- [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg)
+- [OWASP Application Security Verification Standard](https://github.com/OWASP/ASVS)
+
 ## License
 
 The content of this repo are study notes based on PortSwigger's [Web Security Academy](https://portswigger.net/web-security).  They hold all rights to any content that is not my own.
