@@ -1,4 +1,4 @@
-# Cross-site scripting (XSS) :twisted_rightwards_arrows:
+# Cross-site scripting (XSS) :scissors:
 
 Allows an attacker to masquerade as a victim user and perform actions on their behalf.  Works by injecting malicious scripts into a website that execute in the victim's browser.
 
