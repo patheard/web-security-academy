@@ -5,6 +5,7 @@ Working through PortSwigger's [Web Security Academy](https://portswigger.net/web
 ## Topics
 
 ### Client-side
+- [Cross-origin resource sharing (CORS)](cross-origin-resource-sharing/README.md)
 - [Cross-site request forgery (CSRF)](cross-site-request-forgery/README.md)
 - [Cross-site scripting (XSS)](cross-site-scripting/README.md)
 
